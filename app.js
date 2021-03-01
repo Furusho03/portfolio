@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const methodOverride = require('method-override');
 require('dotenv').config();
 
 const connectDB = require('./utils/db');
@@ -15,6 +16,9 @@ connectDB();
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+
 // 静的ファイル
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -24,13 +28,44 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.get('/makecampground', async (req, res) => {
-  const camp = new Campground({
-    title: 'My Backyard 2',
-    description: 'cheap camping 2',
+app.get('/campgrounds', async (req, res) => {
+  const campgrounds = await Campground.find({});
+  res.render('campgrounds/index', { campgrounds });
+});
+
+app.get('/campgrounds/new', (req, res) => {
+  res.render('campgrounds/new');
+});
+
+app.post('/campgrounds', async (req, res) => {
+  // res.send(req.body.campground);
+  const campground = new Campground(req.body.campground);
+  await campground.save();
+  res.redirect(`/campgrounds/${campground._id}`);
+});
+
+app.get('/campgrounds/:id', async (req, res) => {
+  const campground = await Campground.findById(req.params.id);
+  res.render('campgrounds/show', { campground });
+});
+
+app.get('/campgrounds/:id/edit', async (req, res) => {
+  const campground = await Campground.findById(req.params.id);
+  res.render('campgrounds/edit', { campground });
+});
+
+app.put('/campgrounds/:id', async (req, res) => {
+  const id = req.params.id;
+  const campground = await Campground.findByIdAndUpdate(id, {
+    ...req.body.campground,
   });
-  await camp.save();
-  res.send(camp);
+  res.redirect(`/campgrounds/${campground._id}`);
+});
+
+app.delete('/campgrounds/:id', async (req, res) => {
+  const { id } = req.params;
+  await Campground.findByIdAndDelete(id);
+  res.redirect('/campgrounds');
 });
 
 // サーバー
