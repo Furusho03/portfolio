@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
 require('dotenv').config();
+const ejsMate = require('ejs-mate')
 
 const connectDB = require('./utils/db');
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 // テンプレートエンジン
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
