@@ -1,29 +1,71 @@
 <% layout('layouts/boilerplate') %>
-    <h1>Edit Campgrounds</h1>
+<div class="row">
+  <h1 class="text-center">Edit Campground</h1>
+  <div class="col-6 offset-3">
     <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST">
-      <div>
-        <label for="title">title</label>
+      <div class="mb-3">
+        <label class="form-label" for="title">タイトル</label>
         <input
+          class="form-control"
           type="text"
           id="title"
           name="campground[title]"
           value="<%= campground.title %>"
-          placeholder="title"
         />
       </div>
-      <div>
-        <label for="location">location</label>
+      <div class="mb-3">
+        <label class="form-label" for="location">ロケーション</label>
         <input
+          class="form-control"
           type="text"
           id="location"
           name="campground[location]"
           value="<%= campground.location %>"
-          placeholder="location"
         />
       </div>
-      <button>Update campground</button>
+      <div class="mb-3">
+        <label class="form-label" for="image">画像 Ul</label>
+        <input
+          class="form-control"
+          type="text"
+          id="image"
+          name="campground[image]"
+          value="<%= campground.image %>"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="price">Campground Price</label>
+        <div class="input-group">
+          <span class="input-group-text" id="price-label">$</span>
+          <input
+            class="form-control"
+            id="price"
+            name="campground[price]"
+            aria-label="Price"
+            aria-describedby="price-label"
+            type="text "
+            value="<%= campground.price %>"
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="description"
+          name="campground[description]"
+          placeholder="description"
+        >
+          <%= campground.description %>
+        </textarea>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-info">update campground</button>
+      </div>
     </form>
     <a href="/campgrounds/<%= campground._id %>"
       >Back to <%= campground.title %></a
     >
-
+  </div>
+</div>

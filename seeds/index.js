@@ -11,8 +11,10 @@ const Campground = require('../models/campground');
 // データベース接続
 connectDB();
 
-// 一行にすると何故か動く
-const sample = (array) => array[Math.floor(Math.random() * array.length)];
+// 一行にすると何故か動く return したら動いた
+const sample = (array) =>  {
+  return array[Math.floor(Math.random() * array.length)]
+};
 
 const seedDB = async () => {
   await Campground.deleteMany({});
