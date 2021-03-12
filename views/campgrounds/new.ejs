@@ -1,25 +1,55 @@
 <% layout('layouts/boilerplate') %>
-    <h1>New Campgrounds</h1>
+<div class="row">
+  <h1 class="text-center">New Campground</h1>
+  <div class="col-6 offset-3">
     <form action="/campgrounds/" method="POST">
-      <div>
-        <label for="title">title</label>
+      <div class="mb-3">
+        <label class="form-label" for="title">タイトル</label>
         <input
+          class="form-control"
           type="text"
           id="title"
           name="campground[title]"
-          placeholder="title"
+          placeholder="タイトル"
         />
       </div>
-      <div>
-        <label for="location">location</label>
+      <div class="mb-3">
+        <label class="form-label" for="location">ロケーション</label>
         <input
+          class="form-control"
           type="text"
           id="location"
           name="campground[location]"
-          placeholder="location"
+          placeholder="ロケーション"
         />
       </div>
-      <button>add campground</button>
+      <div class="mb-3">
+        <label class="form-label" for="image">画像 Ul</label>
+        <input
+          class="form-control"
+          type="text"
+          id="image"
+          name="campground[image]"
+          placeholder="画像 URL"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="description"
+          name="campground[description]"
+          placeholder="description"
+        >
+        </textarea>
+      </div>
+      <div class="mb-3">
+        <button class="btn btn-success">
+          新しいキャンプグラウンドを追加する
+        </button>
+      </div>
     </form>
-    <a href="/campgrounds">All Campgrounds</a>
-
+    <a href="/campgrounds">全てのキャンプグラウンド</a>
+  </div>
+</div>

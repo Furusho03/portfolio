@@ -2,8 +2,8 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
-require('dotenv').config();
 const ejsMate = require('ejs-mate')
+require('dotenv').config();
 
 const connectDB = require('./utils/db');
 
