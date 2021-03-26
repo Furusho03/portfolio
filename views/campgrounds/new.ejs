@@ -2,7 +2,7 @@
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
-    <form action="/campgrounds/" method="POST">
+    <form action="/campgrounds/" method="POST" novalidate class="validated-form">
       <div class="mb-3">
         <label class="form-label" for="title">タイトル</label>
         <input
@@ -11,7 +11,11 @@
           id="title"
           name="campground[title]"
           placeholder="タイトル"
+          required
         />
+        <div class="valid-feedback">
+          Looks good
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">ロケーション</label>
@@ -21,17 +25,25 @@
           id="location"
           name="campground[location]"
           placeholder="ロケーション"
+          required
         />
+        <div class="valid-feedback">
+          Looks good
+        </div>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="image">画像 Ul</label>
+        <label class="form-label" for="image">画像 URL</label>
         <input
           class="form-control"
           type="text"
           id="image"
           name="campground[image]"
-          placeholder="画像 URL"
+          placeholder="URL"
+          required
         />
+        <div class="valid-feedback">
+          Looks good
+        </div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="price">Campground Price</label>
@@ -44,8 +56,12 @@
             placeholder="0.00"
             aria-label="Price"
             aria-describedby="price-label"
-            type="text "
+            type="text"
+            required
           />
+          <div class="valid-feedback">
+            Looks good
+          </div>
         </div>
       </div>
       <div class="mb-3">
@@ -56,8 +72,12 @@
           id="description"
           name="campground[description]"
           placeholder="description"
+          required
         >
         </textarea>
+        <div class="valid-feedback">
+          Looks good
+        </div>
       </div>
       <div class="mb-3">
         <button class="btn btn-success">
@@ -68,3 +88,5 @@
     <a href="/campgrounds">全てのキャンプグラウンド</a>
   </div>
 </div>
+
+
