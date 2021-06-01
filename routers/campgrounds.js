@@ -46,6 +46,7 @@ router.post(
   catchAsync(async (req, res) => {
     // if(!req.body.campground) throw new ExpressError('入力してください',400)
     const campground = new Campground(req.body.campground);
+    console.log(campground)
     await campground.save();
     req.flash('success', '新しい記事を作成しました')
     res.redirect(`/campgrounds/${campground._id}`);
